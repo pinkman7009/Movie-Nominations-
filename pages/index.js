@@ -1,65 +1,49 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useState, useEffect } from 'react';
+import styles from '../styles/Home.module.css';
+import SearchBar from '../components/ui/SearchBar';
+import MovieList from '../components/movies/MovieList';
+import { server } from '../config/index';
+import useDebounce from '../lib/useDebounce';
 
 export default function Home() {
+  const [searchVal, setSearchVal] = useState('');
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const debouncedSearch = useDebounce(searchVal, 500);
+
+  const fetchMovies = async () => {
+    setLoading(true);
+    const res = await fetch(`${server}/api/movies/${debouncedSearch}`);
+
+    const data = await res.json();
+    setMovies(data.movies);
+    setLoading(false);
+    // console.log(movies);
+  };
+
+  useEffect(() => {
+    if (debouncedSearch !== '') {
+      fetchMovies();
+    }
+  }, [debouncedSearch]);
+
+  const handleChange = (e) => {
+    const text = e.target.value.split(' ').join('+');
+    setSearchVal(text);
+  };
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+    <>
+      <div className={styles.container}>
+        <SearchBar handleChange={handleChange} />
+        {movies && movies.Response === 'True' && (
+          <MovieList
+            movies={movies.Search}
+            loading={loading}
+            unnominate={false}
+          />
+        )}
+      </div>
+    </>
+  );
 }

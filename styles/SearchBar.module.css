@@ -1,0 +1,12 @@
+.searchBar {
+  width: 480px;
+  height: 75px;
+  border: 2px solid;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  margin: 5rem 0;
+  padding: 1rem;
+}
+.searchBar:focus {
+  outline: none;
+}

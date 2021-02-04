@@ -1,0 +1,102 @@
+.movielist {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  min-height: 100%;
+  min-width: 100%;
+}
+.container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.dark {
+  color: #000;
+  font-weight: bold;
+  margin: 0 1rem;
+  text-align: left;
+}
+.titleText {
+  font-size: 1.4rem;
+  margin: 1rem 0;
+  color: #0d335d;
+}
+.noResults {
+  margin: 3rem 0;
+  font-size: 2rem;
+  color: #670719;
+}
+
+.card {
+  min-height: 500px;
+  width: 100%;
+  background: #007da5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.btn {
+  display: block;
+  background: #000000;
+  color: #fff;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 150px;
+  transition: all 0.4s ease;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:hover {
+  background: #03506f;
+}
+
+.btn:disabled {
+  background: grey;
+  cursor: default;
+}
+
+.movieItemCard {
+  margin: 5rem 0;
+  background: #1481a4;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+.movieContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1.5rem;
+  height: 100%;
+  color: white;
+  text-align: right;
+}
+
+.movieContentRow {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem auto;
+}
