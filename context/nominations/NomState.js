@@ -7,7 +7,6 @@ import Cookie from 'js-cookie';
 const NomState = (props) => {
   const initialState = {
     nominations: [],
-    numberOfNominations: 0,
   };
 
   const [state, dispatch] = useReducer(nomReducer, initialState);
@@ -47,7 +46,6 @@ const NomState = (props) => {
     <NomContext.Provider
       value={{
         nominations: state.nominations,
-        numberOfNominations: state.numberOfNominations,
         getNominations,
         addNomination,
         removeNomination,

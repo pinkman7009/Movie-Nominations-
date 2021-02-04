@@ -12,6 +12,7 @@ const MovieItem = ({ id }) => {
   const [movie, setMovie] = useState({});
   const [disabledButton, setDisabledButton] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [bannerMessage, setBannerMessage] = useState('');
 
   const nomContext = useContext(NomContext);
 
@@ -38,6 +39,10 @@ const MovieItem = ({ id }) => {
     addNomination(newNomination);
     setDisabledButton(true);
     setAlertMessage(`${movie.Title} has been added to list of nominations!`);
+
+    if (nominations.length === 4) {
+      setBannerMessage('Yay! You have added 5 nominations.');
+    }
   };
 
   useEffect(() => {
@@ -49,6 +54,14 @@ const MovieItem = ({ id }) => {
       const bool = ids.includes(id);
 
       if (bool) setDisabledButton(true);
+      else {
+        if (nominations.length === 5) {
+          setBannerMessage(
+            'Looks like you already have 5 nominations. Try un-nominating ( if that is a word ) some movies if you wanna add this one.'
+          );
+          setDisabledButton(true);
+        }
+      }
     }
   }, [id]);
 
@@ -59,6 +72,7 @@ const MovieItem = ({ id }) => {
     <BeatLoader loading={loading} css={loaderStyles} size={30} />
   ) : movie.Response === 'True' ? (
     <>
+      {bannerMessage !== '' && <Alert type='primary' message={bannerMessage} />}
       {alertMessage && <Alert type='primary' message={alertMessage} />}
       <div className={styles.movieItemCard}>
         {movie.Poster !== 'N/A' && (
@@ -70,7 +84,7 @@ const MovieItem = ({ id }) => {
           />
         )}
         <div className={styles.movieContent}>
-          <h2>{movie.Title}</h2>
+          <h2 className={styles.titleText}>{movie.Title}</h2>
           {movie.Released && movie.Released !== 'N/A' && (
             <div className={styles.movieContentRow}>
               <span className={styles.dark}>Release Date: </span>

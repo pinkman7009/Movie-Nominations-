@@ -10,3 +10,15 @@
 .searchBar:focus {
   outline: none;
 }
+
+@media (max-width: 768px) {
+  .searchBar {
+    width: 80%;
+    height: 55px;
+    border: 2px solid;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    margin: 5rem 0;
+    padding: 1rem;
+  }
+}

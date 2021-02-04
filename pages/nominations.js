@@ -12,7 +12,6 @@ const nominations = () => {
 
   useEffect(() => {
     getNominations();
-
     setLoading(false);
   }, []);
 
@@ -25,8 +24,8 @@ const nominations = () => {
   }
   return (
     <div className={styles.container}>
-      <h2>Your Nominations</h2>
-
+      <h2 className={styles.title}>Your Nominations</h2>
+      <h3>Nominations Left : {5 - nominations.length}</h3>
       {nominations !== null && (
         <MovieList movies={nominations} loading={loading} unnominate={true} />
       )}
