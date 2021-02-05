@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     } = req;
 
     const data = await fetch(
-      `http://www.omdbapi.com/?apikey=${process.env.API_KEY}&s=${search}`
+      `https://www.omdbapi.com/?apikey=${process.env.API_KEY}&s=${search}`
     );
 
     const movies = await data.json();
