@@ -15,7 +15,7 @@ Search for movies and shows and add them to your nominations for the next Shoppi
 1. Search for movies and shows.
 2. List movie data and nominate 5 of them.
 3. Uses the OMDB API to fetch data for movies and shows. ( http://www.omdbapi.com/ )
-4. Stores user's nominations in cookies in the browser.
+4. Stores user's nominations as cookies in the browser.
 
 ## Built with
 
