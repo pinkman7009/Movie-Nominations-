@@ -21,7 +21,7 @@ const MovieItem = ({ id }) => {
   const fetchData = async () => {
     setLoading(true);
     const res = await fetch(
-      `http://www.omdbapi.com/?apikey=${process.env.NEXT_PUBLIC_API_KEY}&i=${id}`
+      `https://www.omdbapi.com/?apikey=${process.env.NEXT_PUBLIC_API_KEY}&i=${id}`
     );
 
     const data = await res.json();
