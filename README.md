@@ -41,3 +41,7 @@ Search for movies and shows and add them to your nominations for the next Shoppi
 3. Run `touch .env` to create a file for your environment variables. Necessary variables are API_KEY and NEXT_PUBLIC_API_KEY to store your API key.
 4. Get your API key from http://www.omdbapi.com/
 5. Run `npm run dev`
+
+## Live Demo
+
+https://movie-nominations.pinkman7009.vercel.app/
